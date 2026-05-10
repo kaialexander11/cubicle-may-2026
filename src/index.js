@@ -1,10 +1,10 @@
 //console.log('Hello world!');
 const express = require('express');
 
-const handlebars = require('express-handlebars');
 const expressConfigurator = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
 const homeController = require('./controllers/homeController');
+const cubeController = require('./controllers/cubeController');
 
 const path = require('path');
 const app = express();
@@ -18,7 +18,7 @@ const PORT = 5000;
 expressConfigurator(app);
 handlebarsConfig(app);
 
-//app.get('/', homeController.getHome);
 app.use(homeController);
+app.use('/cubes', cubeController);
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}... `));
