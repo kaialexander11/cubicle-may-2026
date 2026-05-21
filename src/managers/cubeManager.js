@@ -1,3 +1,5 @@
+const Cube = require('../models/Cube');
+
 const uniqid = require('uniqid');
 //const db = require('../db.json');
 
@@ -19,9 +21,13 @@ const cubes = [
 ];
 
 //exports.getAll = (search, from, to) => cubes.slice(); => VALID!
-exports.getAll = (search, from, to) => {
+exports.getAll = async (search, from, to) => {
 
-    let result = cubes.slice();
+    //let result = cubes.slice();
+    let result = await Cube.find().lean();
+
+
+    // TODO: use mongoose to filter in the db! 
 
     if (search) {
         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
@@ -39,20 +45,24 @@ exports.getAll = (search, from, to) => {
 
 };
 
-exports.getOne = (cubeId) => cubes.find(x => x.id == cubeId);
+//exports.getOne = (cubeId) => cubes.find(x => x.id == cubeId);
 
-exports.create = (cubeData) => {
+exports.getOne = (cubeId) => Cube.findById(cubeId).lean();
 
-    const newCube = {
+exports.create = async (cubeData) => {
+
+    const cube = new Cube(cubeData);
+
+    await cube.save();
+
+    //const newCube = {
         //id: cubes.length + 1,
         //id: (new Date()).getTime(),
-        id: uniqid(),
-        ...cubeData,
-    };
-
+        //id: uniqid(),
+        //...cubeData,
+    //};
+    //cubes.push(newCube);
     //cubes.push(newCube);
 
-    cubes.push(newCube);
-
-    return newCube;
+    return cube;
 };

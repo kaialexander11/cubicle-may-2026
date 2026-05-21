@@ -19,11 +19,11 @@ const PORT = 5000;
 expressConfigurator(app);
 handlebarsConfig(app);
 
+
+
 dbConnect()
     .then(() => console.log('DB connected successfully!'))
-    .catch(err => {
-        console.log('DB error: ', err);
-    });
+    .catch(err => console.log('DB error: ', err.message));
 
 app.use(routes);
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}... `));
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}... `)); 
