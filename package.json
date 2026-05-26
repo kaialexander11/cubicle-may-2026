@@ -21,6 +21,7 @@
     "nodemon": "^3.1.14"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.2",
     "mongoose": "^9.6.2",
