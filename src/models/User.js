@@ -16,6 +16,8 @@ const userSchema = mongoose.Schema({
 
 });
 
+// TODO: add user validation =>
+
 userSchema.virtual('repeatPassword')
     .set(function(value) { 
         if (value !== this.password) { 
