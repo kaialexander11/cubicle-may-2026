@@ -4,7 +4,7 @@ const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/create', (req, res) => {
     //console.log(cubeManager.getAll());
-    res.render('create');
+    res.render('cube/create');
     //console.log(req.user);
 });
 
@@ -43,7 +43,7 @@ router.get('/:cubeId/details', async (req, res) => {
         return res.redirect('/404');
     }
 
-    res.render('details', { cube });
+    res.render('cube/details', { cube });
     
 });
 
@@ -68,6 +68,14 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
     await cubeManager.attachAccessory(cubeId, accessoryId);
 
     res.redirect(`/cubes/${cubeId}/details`);
+
+});
+
+router.get('/:cubeId/delete', async(req, res) => {
+
+    const cube = await cubeManager.getOne(req.params.cubeId).lean();
+
+    res.render('cube/delete', { cube });
 
 });
 
