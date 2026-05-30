@@ -4,8 +4,8 @@ const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/create', (req, res) => {
     //console.log(cubeManager.getAll());
-    //res.render('create');
-    console.log(req.user);
+    res.render('create');
+    //console.log(req.user);
 });
 
 router.post('/create', async (req, res) => {
@@ -25,13 +25,13 @@ router.post('/create', async (req, res) => {
         description,
         imageUrl, 
         difficultyLevel: Number(difficultyLevel),
+        owner: req.user._id,
 
     });
 
     res.redirect('/');
 
 });
-
 
 router.get('/:cubeId/details', async (req, res) => {
 
