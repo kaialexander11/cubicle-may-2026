@@ -1,6 +1,6 @@
-exports.getDifficultyOptionsViewData = function (difficultyLevel) {
+exports.getDifficultyOptionsViewData = function (difficultyLevel) { 
 
-    const titles = [
+    const titles = [ 
 
             'Very Easy',
             'Easy',
