@@ -4,6 +4,7 @@ const uniqid = require('uniqid');
 //const db = require('../db.json');
 
 const cubes = [
+    
     {
         id: '5n1o9b6omp01a1wd',
         name: 'Digital Cube',
@@ -70,6 +71,10 @@ exports.create = async (cubeData) => {
 
     return cube.save();
 };
+
+exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
+
+exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId);
 
 exports.attachAccessory = async (cubeId, accessoryId) => {
     //return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });

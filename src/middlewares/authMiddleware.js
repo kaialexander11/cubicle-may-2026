@@ -9,20 +9,26 @@ exports.auth = async(req, res, next) => {
     if (token) {
 
         try {
-            // TODO: validate token => 
-            const user = await jwt.verify(token, SECRET);
 
-            req.user = user;
+            // TODO: validate token => 
+            const decodedToken = await jwt.verify(token, SECRET);
+
+            req.user = decodedToken;
 
             next();
+
         } catch (err) {
+
             res.clearCookie('auth');
             
             return res.redirect('/users/login');
+
         } 
         
     } else {
+
         next();
+
     }
 
 };
