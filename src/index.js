@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const expressConfigurator = require('./config/expressConfig'); 
 const handlebarsConfig = require('./config/handlebarsConfig');
+const errorHandler = require('./middlewares/errorHandlerMiddleware');
 const dbConnect = require('./config/dbConfig');
 
 const path = require('path'); 
@@ -20,11 +21,12 @@ expressConfigurator(app);
 handlebarsConfig(app);
 
 
-
 dbConnect()
     .then(() => console.log('DB connected successfully!'))
     .catch(err => console.log('DB error: ', err.message));
     
 
 app.use(routes);
+app.use(errorHandler);
+
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}... `)); 
