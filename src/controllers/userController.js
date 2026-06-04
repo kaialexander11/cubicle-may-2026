@@ -14,8 +14,10 @@ router.post('/register', async (req, res) => {
     //console.log(req.body);
     try {
         await userManager.register({ username, password, repeatPassword });
+
         res.redirect('/users/login');
-    } catch(err) {
+    } catch (err) {
+        
         // MESSAGE: All lines are valid! => 
 
         //console.log(err);
@@ -29,7 +31,7 @@ router.post('/register', async (req, res) => {
         const errorMessages = extractErrorMessages(err);
         res.status(404).render('users/register', { errorMessages });
 
-    }
+    };
 
 });
 
@@ -47,7 +49,7 @@ router.post('/login', async (req, res, next) => {
         res.cookie('auth', token, { httpOnly: true });
 
         res.redirect('/');
-    } catch(err) {
+    } catch(error) {
         next(error);
     }
 
